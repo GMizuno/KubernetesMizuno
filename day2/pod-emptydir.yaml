@@ -7,11 +7,11 @@ metadata:
   name: girus
 spec:
   containers:
-  - image: busybox ## Trocar para ubuntu para fazrr apt-get stress
-    name: busybox
-    args:
-    - sleep
-    - "600"
+  - image: nginx 
+    name: webserver
+    volumeMounts:
+    - mountPath: /giropops
+      name: volume1 
     resources:
       limits:
         cpu: "0.5" ## Maximo do uso de cpu
@@ -19,5 +19,11 @@ spec:
       requests:
         cpu: "0.3" ## Garante o uso de 0.3 cpu (minimo que sera usado)
         memory: "64Mi"
+    
   dnsPolicy: ClusterFirst
   restartPolicy: Always
+  volumes:
+    - name: volume1 
+      emptyDir: # Se pod restart nao perde, mas se ele for movido perde tudo 
+        sizeLimit: 256Mi
+
