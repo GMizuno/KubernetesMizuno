@@ -28,6 +28,8 @@ spec:
           startupProbe:
             tcpSocket:
               port: 80
+            initialDelaySeconds: 10
+            timeoutSeconds: 5  
               
 
             

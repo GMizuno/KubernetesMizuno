@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  labels: 
+    storage: lento
+  name: meu-pv
+spec:
+  capacity:
+    storage: 1G
+  accessModes:
+    - ReadWriteOnce # Disponivel como leitura/escrita em um no, outra opcao ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain # Nao exclui, outra opcao Recycle 
+  hostPath:
+    path: /mnt/data # Exemplo
+  storageClassName: giropops
+
